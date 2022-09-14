@@ -1,0 +1,35 @@
+---
+name: 'Demo-1'
+tags:
+  - 'demo'
+# Updating Runtime will restart a running cluster
+runtime: 'd11-mlp-runtime-ray-1.12.1'
+terminate_after_minutes: 60
+infra_template: 'General'
+# Updating Head_Node will restart a running cluster
+head_node:
+  head_node_cores: 2
+  head_node_memory: 4
+worker_group:
+  - cores: 2
+    memory: 4
+    min_pods: 1
+    max_pods: 3
+    disk:
+      disk_type: 'gp2'
+      disk_size: 50
+# You can add more workergroups in the following way
+# - cores: 0
+#   memory: 0
+#   min_pods: 0
+#   max_pods: 0
+#   disk:
+#     type: ''
+#     size: 0
+# To Update Advanced Settings, you need to stop the cluster
+advance_config:
+  env_variables: ''
+  log_path: ''
+  init_script: ''
+  instance_role: 'ml-platform-ds-role'
+  availability_zone: 'us-east-1'

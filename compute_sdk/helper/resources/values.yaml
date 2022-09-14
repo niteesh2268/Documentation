@@ -1,0 +1,32 @@
+image: 000375658054.dkr.ecr.us-east-1.amazonaws.com/ray-images:1.12.1
+headPodType: rayHeadType
+podTypes:
+    rayHeadType:
+        CPU: 2
+        memory: 8Gi
+        GPU: 0
+        rayResources: {}
+        nodeSelector: {}
+        tolerations:
+        - key: "head"
+          operator: "Equal"
+          value: "yes"
+          effect: "NoSchedule"
+    rayWorkerType:
+        minWorkers: 0
+        maxWorkers: 0
+        memory: 4Gi
+        CPU: 2
+        GPU: 0
+        rayResources: {}
+        nodeSelector: {}
+        tolerations: []
+operatorOnly: false
+clusterOnly: True
+namespacedOperator: false
+operatorNamespace: default
+operatorImage: rayproject/ray:1.12.1-cpu
+exposeServiceAnnotations:
+    service.beta.kubernetes.io/aws-load-balancer-internal: "true"
+    service.beta.kubernetes.io/aws-load-balancer-scheme: "internal"
+    service.beta.kubernetes.io/aws-load-balancer-security-groups: "sg-0bb4a6d687a4a5e7b"
